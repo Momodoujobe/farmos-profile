@@ -1,0 +1,8 @@
+name: Farm Weather
+description: 'Provides the temperature of the given time.'
+type: module
+package: farmOS Contrib
+core_version_requirement: ^9
+dependencies:
+  - farm:farm_plant
+  - farm:farm_quick
