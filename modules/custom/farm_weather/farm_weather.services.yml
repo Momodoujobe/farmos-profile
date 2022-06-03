@@ -1,0 +1,4 @@
+services:
+  farm_weather.weather_api:
+    class: Drupal\farm_weather\Services\WeatherApi
+    arguments: ['@http_client']
