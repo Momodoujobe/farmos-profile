@@ -93,29 +93,33 @@ class Weather extends QuickFormBase {
 
     $dateFormat = $date->format('Y-m-d');
 
-    $weather = new WeatherController();
+    $client = \Drupal::httpClient();
+
+    $weather = new WeatherController($client);
+
     $result = $weather->getWeather($dateFormat);
-    $weather = $result['data']['weather'][0];
+
+    $data = $result['data']['weather'][0];
 
     // Storing temperature.
     $form['temp']['maxC'] = [
       '#type' => 'textfield',
-      '#title' => 'The maximum celsius temperature is ' . $weather['maxtempC'] . 'C',
+      '#title' => 'The maximum celsius temperature is ' . $data['maxtempC'] . 'C',
     ];
 
     $form['temp']['maxF'] = [
       '#type' => 'textfield',
-      '#title' => 'The maximum fahrenheit temperature is ' . $weather['maxtempF'] . 'F',
+      '#title' => 'The maximum fahrenheit temperature is ' . $data['maxtempF'] . 'F',
     ];
 
     $form['temp']['minC'] = [
       '#type' => 'textfield',
-      '#title' => 'The minimum celsius temperature is ' . $weather['mintempC'] . 'C',
+      '#title' => 'The minimum celsius temperature is ' . $data['mintempC'] . 'C',
     ];
 
     $form['temp']['minF'] = [
       '#type' => 'textfield',
-      '#title' => 'The minimum fahrenheit temperature is ' . $weather['mintempF'] . 'F',
+      '#title' => 'The minimum fahrenheit temperature is ' . $data['mintempF'] . 'F',
     ];
 
     $log = [

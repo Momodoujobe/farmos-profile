@@ -2,6 +2,8 @@
 
 namespace Drupal\farm_weather\Services;
 
+use GuzzleHttp\ClientInterface;
+
 /**
  * The Weather Api service class.
  */
