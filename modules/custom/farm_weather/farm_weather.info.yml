@@ -1,5 +1,5 @@
 name: Farm Weather
-description: 'Provides the temperature of the given time.'
+description: 'Provides the temperature of the given timestamp.'
 type: module
 package: farmOS Contrib
 core_version_requirement: ^9

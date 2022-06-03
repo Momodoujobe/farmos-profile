@@ -3,7 +3,7 @@
 namespace Drupal\farm_weather\Services;
 
 /**
- * The Weather Temperature service class.
+ * The Weather Api service class.
  */
 class WeatherApi {
 
@@ -15,7 +15,7 @@ class WeatherApi {
   protected $httpClient;
 
   /**
-   * Constructor for WeatherTemperature.
+   * Constructor for WeatherApi.
    *
    * @param \GuzzleHttp\ClientInterface $http_client
    *   A Guzzle client object.

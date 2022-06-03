@@ -5,6 +5,7 @@ namespace Drupal\farm_weather\Plugin\QuickForm;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\farm_quick\Plugin\QuickForm\QuickFormBase;
 use Drupal\farm_quick\Traits\QuickLogTrait;
+use Drupal\farm_weather\Controller\WeatherController;
 
 /**
  * Weather quick form.
@@ -90,6 +91,12 @@ class Weather extends QuickFormBase {
     $location = $form_state->getValue('location');
     $notes = $form_state->getValue('notes');
 
+    $dateFormat = $date->format('Y-m-d');
+
+    $weather = new WeatherController();
+    $result = $weather->getWeather($dateFormat);
+    $weather = $result['data']['weather'][0];
+
     $log = [
       'timestamp' => $date->getTimestamp(),
       'name' => $this->$name,
@@ -100,6 +107,10 @@ class Weather extends QuickFormBase {
           'value' => $quantity,
         ],
       ],
+      'maxC' => $weather['maxtempC'],
+      'maxF' => $weather['maxtempF'],
+      'minC' => $weather['mintempC'],
+      'minF' => $weather['mintempF'],
       'location' => $location ?? NULL,
       'notes' => [
         'value' => $this->$notes,
