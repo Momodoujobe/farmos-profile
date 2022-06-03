@@ -97,6 +97,27 @@ class Weather extends QuickFormBase {
     $result = $weather->getWeather($dateFormat);
     $weather = $result['data']['weather'][0];
 
+    // Storing temperature.
+    $form['temp']['maxC'] = [
+      '#type' => 'textfield',
+      '#title' => 'The maximum celsius temperature is ' . $weather['maxtempC'] . 'C',
+    ];
+
+    $form['temp']['maxF'] = [
+      '#type' => 'textfield',
+      '#title' => 'The maximum fahrenheit temperature is ' . $weather['maxtempF'] . 'F',
+    ];
+
+    $form['temp']['minC'] = [
+      '#type' => 'textfield',
+      '#title' => 'The minimum celsius temperature is ' . $weather['mintempC'] . 'C',
+    ];
+
+    $form['temp']['minF'] = [
+      '#type' => 'textfield',
+      '#title' => 'The minimum fahrenheit temperature is ' . $weather['mintempF'] . 'F',
+    ];
+
     $log = [
       'timestamp' => $date->getTimestamp(),
       'name' => $this->$name,
@@ -107,10 +128,6 @@ class Weather extends QuickFormBase {
           'value' => $quantity,
         ],
       ],
-      'maxC' => $weather['maxtempC'],
-      'maxF' => $weather['maxtempF'],
-      'minC' => $weather['mintempC'],
-      'minF' => $weather['mintempF'],
       'location' => $location ?? NULL,
       'notes' => [
         'value' => $this->$notes,
